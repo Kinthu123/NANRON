@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw photo/video assets (too large for git)
+/lola/
+*.HEIC
+*.heic
+*.MOV
+*.mov
