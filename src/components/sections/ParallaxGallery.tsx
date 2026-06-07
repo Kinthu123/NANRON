@@ -34,9 +34,9 @@ export default function ParallaxGallery() {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
 
-  // mobile: halve the parallax intensity
-  const ym1 = useTransform(scrollYProgress, [0, 1], [0, height * 1]);
-  const ym2 = useTransform(scrollYProgress, [0, 1], [0, height * 1.8]);
+  // mobile: reduced parallax intensity for smoother scroll
+  const ym1 = useTransform(scrollYProgress, [0, 1], [0, height * 0.6]);
+  const ym2 = useTransform(scrollYProgress, [0, 1], [0, height * 1.1]);
 
   useEffect(() => {
     const update = () => {
@@ -53,6 +53,7 @@ export default function ParallaxGallery() {
       <div
         ref={gallery}
         className="relative box-border flex h-[175vh] gap-[2vw] overflow-hidden p-[2vw]"
+        style={{ transform: "translateZ(0)" }}
       >
         {isMobile ? (
           // Mobile: 2 columns, staggered
@@ -98,7 +99,7 @@ function MobileColumn({ images, y, offset }: ColumnProps & { offset: string }) {
   return (
     <motion.div
       className="relative flex h-full w-1/2 flex-col gap-[3vw]"
-      style={{ y, top: offset }}
+      style={{ y, top: offset, willChange: "transform" }}
     >
       {images.map((src, i) => (
         <div key={i} className="relative h-full w-full overflow-hidden">
