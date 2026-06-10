@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
-  { label: "Instagram", href: "https://instagram.com/nangron" },
+  { label: "Instagram", href: "https://www.instagram.com/lola_9lola9/" },
   { label: "Email",     href: "mailto:nangron@email.com" },
 ];
 
