@@ -5,10 +5,12 @@ import HeroTitle from "@/components/sections/HeroTitle";
 import ParallaxGallery from "@/components/sections/ParallaxGallery";
 import TextRevealSection from "@/components/sections/TextRevealSection";
 import InfoSection from "@/components/sections/InfoSection";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function Home() {
   return (
     <>
+      <LoadingScreen />
       <Navbar />
 
       {/* Hero */}
