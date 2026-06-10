@@ -36,6 +36,17 @@ export default function LoadingScreen() {
     }
   }, [phase]);
 
+  // lock scroll during load, snap to top on exit
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  useEffect(() => {
+    if (phase === "exit") window.scrollTo(0, 0);
+  }, [phase]);
+
   if (phase === "done") return null;
 
   const words = ["NANG", "RON"];
