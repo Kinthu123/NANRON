@@ -4,10 +4,15 @@ import { useEffect, useRef, useState } from "react";
 
 type Phase = "name" | "line" | "counter" | "exit" | "done";
 
-export default function LoadingScreen() {
+export default function LoadingPreview() {
   const [count, setCount] = useState(0);
   const [phase, setPhase] = useState<Phase>("name");
   const lineRef = useRef<HTMLDivElement>(null);
+
+  const restart = () => {
+    setCount(0);
+    setPhase("name");
+  };
 
   // counter tick
   useEffect(() => {
@@ -36,7 +41,16 @@ export default function LoadingScreen() {
     }
   }, [phase]);
 
-  if (phase === "done") return null;
+  if (phase === "done") {
+    return (
+      <div
+        className="min-h-screen bg-[#b8b0a8] flex items-center justify-center cursor-pointer"
+        onClick={restart}
+      >
+        <p className="text-black/40 text-xs tracking-[0.3em]">CLICK TO REPLAY</p>
+      </div>
+    );
+  }
 
   const words = ["NANG", "RON"];
   const nameVisible = phase === "name" || phase === "line" || phase === "counter" || phase === "exit";
@@ -44,7 +58,7 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-black"
+      className="fixed inset-0 bg-black flex flex-col items-center justify-center overflow-hidden"
       style={{
         transform: phase === "exit" ? "translateY(-100%)" : "translateY(0)",
         transition: phase === "exit" ? "transform 0.6s cubic-bezier(0.76, 0, 0.24, 1)" : "none",
