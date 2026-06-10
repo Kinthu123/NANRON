@@ -42,6 +42,12 @@ function useScramble(text: string) {
   return { display, run };
 }
 
+function scrollToSection(href: string) {
+  const id = href.replace("#", "");
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled]   = useState(false);
   const [active,   setActive]     = useState("home");
@@ -110,12 +116,13 @@ export default function Navbar() {
         {/* Left — desktop nav links */}
         <div className={`hidden md:flex gap-8 text-sm tracking-wider ${textColor}`}>
           {navLinks.map(({ label, href }) => (
-            <a key={label} href={href}
-              className={`transition-opacity duration-200 hover:opacity-60 ${
+            <button key={label}
+              onClick={() => scrollToSection(href)}
+              className={`transition-opacity duration-200 hover:opacity-60 bg-transparent border-0 p-0 ${
                 active === href.replace("#", "") ? "font-bold" : "font-normal"
               }`}>
               {label}
-            </a>
+            </button>
           ))}
         </div>
 
@@ -155,15 +162,14 @@ export default function Navbar() {
       }`}>
         <nav className="flex flex-col gap-2 mt-16">
           {navLinks.map(({ label, href }) => (
-            <a
+            <button
               key={label}
-              href={href}
-              onClick={() => setMobileOpen(false)}
-              className="text-white leading-none tracking-tight transition-opacity hover:opacity-50"
+              onClick={() => { scrollToSection(href); setMobileOpen(false); }}
+              className="text-white leading-none tracking-tight transition-opacity hover:opacity-50 bg-transparent border-0 p-0 text-left"
               style={{ fontFamily: "var(--font-anton)", fontSize: "clamp(3.5rem, 18vw, 5.5rem)" }}
             >
               {label}
-            </a>
+            </button>
           ))}
         </nav>
 

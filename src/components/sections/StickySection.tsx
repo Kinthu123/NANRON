@@ -6,9 +6,27 @@ import { useRef, useState } from "react";
 import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 const cards = [
-  { id: 1, src: "/images/sticky/sticky-1.jpg", title: "Teal Collection", subtitle: "AW 2025" },
-  { id: 2, src: "/images/sticky/sticky-2.jpg", title: "White Series",    subtitle: "AW 2025" },
-  { id: 3, src: "/images/sticky/sticky-3.jpg", title: "Avant-Garde",     subtitle: "SS 2025" },
+  {
+    id: 1,
+    src: "/images/sticky/sticky-1.jpg",
+    title: "Styling 2",
+    subtitle: "AW 2025",
+    description: "A fashion concept inspired by the abandoned Six Flags New Orleans, exploring the contrast between joy, nostalgia, and decay.",
+  },
+  {
+    id: 2,
+    src: "/images/sticky/sticky-2.jpg",
+    title: "Styling 3",
+    subtitle: "AW 2025",
+    description: "Inspired by the book That Man, this styling project explores emotional pain, vulnerability, and healing through visual storytelling.",
+  },
+  {
+    id: 3,
+    src: "/images/sticky/sticky-3.jpg",
+    title: "Zero Project",
+    subtitle: "SS 2025",
+    description: "Avant-garde design developed from a 3D paper craft dragon, translating geometric forms into sculptural garment patterns.",
+  },
 ];
 
 const TOTAL = cards.length;
@@ -104,7 +122,7 @@ function Card({ card, index, scrollYProgress }: CardProps) {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 text-white">
+        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 text-white max-w-[70%]">
           <p className="mb-1 md:mb-2 text-xs md:text-sm uppercase tracking-[0.2em] text-white/60"
             style={{ fontFamily: "Roc Grotesk, Arial, sans-serif" }}>
             {card.subtitle}
@@ -113,6 +131,10 @@ function Card({ card, index, scrollYProgress }: CardProps) {
             style={{ fontFamily: "var(--font-anton)" }}>
             {card.title}
           </h3>
+          <p className="mt-2 md:mt-3 text-xs md:text-sm text-white/70 leading-relaxed"
+            style={{ fontFamily: "Roc Grotesk, Arial, sans-serif" }}>
+            {card.description}
+          </p>
         </div>
 
         <div className="absolute right-6 top-6 md:right-10 md:top-10 text-5xl md:text-7xl font-bold text-white/40"
