@@ -148,12 +148,8 @@ export default function Navbar() {
           {brand}
         </span>
 
-        {/* Right — language (desktop only) */}
-        <div className={`ml-auto hidden md:flex items-center gap-2 text-sm tracking-wider ${textColor}`}>
-          <a href="#" className="hover:opacity-60 transition-opacity">Eng</a>
-          <span className="opacity-40">·</span>
-          <a href="#" className="hover:opacity-60 transition-opacity">Thai</a>
-        </div>
+        {/* Right spacer — balances the left nav links */}
+        <div className="ml-auto hidden md:block" />
       </nav>
 
       {/* Mobile full-screen menu */}
@@ -173,10 +169,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="mt-16 flex gap-6 text-white/50 text-sm tracking-widest">
-          <a href="#" className="hover:text-white transition-colors">Eng</a>
-          <a href="#" className="hover:text-white transition-colors">Thai</a>
-        </div>
       </div>
     </>
   );
