@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/lola_9lola9/" },
-  { label: "Email",     href: "mailto:nangron@email.com" },
+  { label: "Email",     href: "mailto:ronkhambwar@gmail.com" },
 ];
 
 export default function InfoSection() {
