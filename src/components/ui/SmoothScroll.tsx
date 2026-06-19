@@ -5,14 +5,12 @@ import { useEffect } from "react";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const isTouchDevice = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+    // Lenis adds JS overhead to every touchmove event which lags on mobile CPUs.
+    // Native touch scroll is hardware-accelerated. Framer Motion + GSAP work
+    // fine with native scroll — they read window.scrollY directly.
+    if (navigator.maxTouchPoints > 0 || "ontouchstart" in window) return;
 
-    const lenis = new Lenis({
-      lerp: isTouchDevice ? 1 : 0.08,   // no lerp on touch = no lag behind finger
-      smoothWheel: true,
-      syncTouch: isTouchDevice,          // sync Lenis to native touch so animations stay smooth
-      syncTouchLerp: 0.075,             // fast deceleration after finger lifts = feels native
-    });
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
 
     let raf: number;
     const loop = (time: number) => {
