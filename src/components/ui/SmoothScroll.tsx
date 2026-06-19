@@ -5,11 +5,15 @@ import { useEffect } from "react";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Touch devices use native scroll — hardware-accelerated and already smooth.
-    // Lenis lerp on touch makes scroll lag behind the finger.
-    if (navigator.maxTouchPoints > 0 || "ontouchstart" in window) return;
+    const isTouchDevice = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
 
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      // syncTouch syncs Lenis to native touch velocity — no lag behind finger,
+      // but keeps scroll-linked animations (parallax, sticky) running smoothly
+      syncTouch: isTouchDevice,
+    });
 
     let raf: number;
     const loop = (time: number) => {
