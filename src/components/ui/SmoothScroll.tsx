@@ -8,11 +8,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const isTouchDevice = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
 
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: isTouchDevice ? 1 : 0.08,   // no lerp on touch = no lag behind finger
       smoothWheel: true,
-      // syncTouch syncs Lenis to native touch velocity — no lag behind finger,
-      // but keeps scroll-linked animations (parallax, sticky) running smoothly
-      syncTouch: isTouchDevice,
+      syncTouch: isTouchDevice,          // sync Lenis to native touch so animations stay smooth
+      syncTouchLerp: 0.075,             // fast deceleration after finger lifts = feels native
     });
 
     let raf: number;
