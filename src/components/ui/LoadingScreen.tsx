@@ -36,15 +36,17 @@ export default function LoadingScreen() {
     }
   }, [phase]);
 
-  // lock scroll during load, snap to top on exit
+  // lock scroll during load
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
   }, []);
 
+  // explicitly release scroll lock — returning null does NOT unmount the component
+  // so the cleanup function above never fires; we must release it manually
   useEffect(() => {
     if (phase === "exit") window.scrollTo(0, 0);
+    if (phase === "done") document.body.style.overflow = "";
   }, [phase]);
 
   if (phase === "done") return null;
