@@ -86,9 +86,16 @@ export default function InfoSection() {
                 style={{ fontSize: "clamp(1.6rem, 3vw, 2.8rem)", fontWeight: 300, letterSpacing: "-0.01em" }}
               >
                 <span>{label}</span>
-                <span className="text-2xl opacity-40 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1">
-                  ↗
-                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22" height="22" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="1.5"
+                  strokeLinecap="round" strokeLinejoin="round"
+                  className="opacity-40 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
               </a>
             ))}
             <div className="border-t border-white/10" />
