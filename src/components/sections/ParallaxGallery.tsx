@@ -29,14 +29,14 @@ export default function ParallaxGallery() {
     offset: ["start end", "end start"],
   });
 
-  const y  = useTransform(scrollYProgress, [0, 1], [0, height * 2]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+  const y  = useTransform(scrollYProgress, [0, 1], [0, height * 1.4]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 2.2]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 0.9]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 1.8]);
 
-  // mobile: reduced parallax intensity for smoother scroll
-  const ym1 = useTransform(scrollYProgress, [0, 1], [0, height * 0.6]);
-  const ym2 = useTransform(scrollYProgress, [0, 1], [0, height * 1.1]);
+  // mobile: reduced parallax intensity, less top offset so images show immediately
+  const ym1 = useTransform(scrollYProgress, [0, 1], [0, height * 0.4]);
+  const ym2 = useTransform(scrollYProgress, [0, 1], [0, height * 0.7]);
 
   useEffect(() => {
     const update = () => {
@@ -58,8 +58,8 @@ export default function ParallaxGallery() {
         {isMobile ? (
           // Mobile: 2 columns, staggered
           <>
-            <MobileColumn images={[images[0], images[1], images[2], images[4]]} y={ym1} offset="-40%" />
-            <MobileColumn images={[images[5], images[6], images[7], images[8]]} y={ym2} offset="-70%" />
+            <MobileColumn images={[images[0], images[1], images[2], images[4]]} y={ym1} offset="-15%" />
+            <MobileColumn images={[images[5], images[6], images[7], images[8]]} y={ym2} offset="-30%" />
           </>
         ) : (
           // Desktop: 4 columns
@@ -80,9 +80,9 @@ type ColumnProps = { images: string[]; y: MotionValue<number> };
 function Column({ images, y }: ColumnProps) {
   return (
     <motion.div
-      className="relative -top-[45%] flex h-full w-1/4 min-w-[250px] flex-col gap-[2vw]
-        first:top-[-45%] [&:nth-child(2)]:top-[-95%]
-        [&:nth-child(3)]:top-[-45%] [&:nth-child(4)]:top-[-75%]"
+      className="relative flex h-full w-1/4 min-w-[250px] flex-col gap-[2vw]
+        first:top-[-10%] [&:nth-child(2)]:top-[-45%]
+        [&:nth-child(3)]:top-[-10%] [&:nth-child(4)]:top-[-35%]"
       style={{ y }}
     >
       {images.map((src, i) => (
