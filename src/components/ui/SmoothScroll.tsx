@@ -5,10 +5,7 @@ import { useEffect } from "react";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Skip Lenis on any touch-capable device — it intercepts touchmove and breaks 1-finger scroll
-    if (navigator.maxTouchPoints > 0 || "ontouchstart" in window) return;
-
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true, syncTouch: true });
 
     let raf: number;
     const loop = (time: number) => {
